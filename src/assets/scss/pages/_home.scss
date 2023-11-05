@@ -39,16 +39,16 @@
         flex-direction: column;
         gap: 10px;
 
-        label{
-            font-size: 20px;
+        label {
+          font-size: 20px;
         }
 
-        select{
-            width: 200px;
-            height: 30px;
+        select {
+          width: 200px;
+          height: 30px;
         }
 
-        input{
+        input {
           width: 200px;
           height: 30px;
           border: none;
@@ -56,32 +56,37 @@
           font-size: 18px;
           padding: 2px 5px;
         }
+
+        .errMsg {
+          color: #f00;
+          font-size: 18px;
+        }
       }
     }
 
-    .btns{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .btns {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-        button{
-            width: 200px;
-            font-size: 20px;
-            outline: none;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            background-color: #00f;
-            color: #fff;
-            padding: 10px 0;
-            transition: all 0.7s ease;
+      button {
+        width: 200px;
+        font-size: 20px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        background-color: #00f;
+        color: #fff;
+        padding: 10px 0;
+        transition: all 0.7s ease;
 
-            &:hover{
-                background-color: #ff0;
-                color: #00f;
-            }
+        &:hover {
+          background-color: #ff0;
+          color: #00f;
         }
+      }
     }
   }
 }

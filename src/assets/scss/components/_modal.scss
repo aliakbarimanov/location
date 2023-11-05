@@ -1,0 +1,35 @@
+.modal{
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 30px;
+    gap: 15px;
+    transition: all .5s ease;
+
+    p{
+        font-size: 20px;
+        font-weight: 700;
+
+        span{
+            padding-left: 50px;
+            color: #f00
+        }
+    }
+
+    &.active{
+        width: 300px;
+        height: 300px;
+        visibility: visible;
+        opacity: 1;
+    }
+}

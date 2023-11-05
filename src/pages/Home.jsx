@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Modal from "../components/Modal";
 
 const Home = () => {
   useEffect(() => {
@@ -8,6 +9,9 @@ const Home = () => {
 
   const [data, setData] = useState([]);
   const [cities, setCities] = useState([]);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [userName, setUserName] = useState("");
 
   const getData = async (e) => {
     await axios
@@ -16,9 +20,17 @@ const Home = () => {
       .catch((err) => console.log(err));
   };
 
-  const selectCountry = (e) => {
-    const cities = data.filter((item) => item.country === e.target.value);
-    setCities(cities[0].cities);
+  useEffect(() => {
+    selectCountry();
+  }, [country]);
+
+  const selectCountry = () => {
+    const cities = data.filter((item) => item.country === country);
+    setCities(cities[0]?.cities);
+  };
+
+  const submitData = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -28,8 +40,13 @@ const Home = () => {
         <div className="inputs">
           <div className="inputItem">
             <label>Select Country</label>
-            <select name="country" onChange={selectCountry}>
-              <option>Select here...</option>
+            <select
+              name="country"
+              onChange={(e) => {
+                setCountry(e.target.value);
+              }}
+            >
+              <option value="">Select here...</option>
               {data.map((item, id) => (
                 <option value={item.country} key={id}>
                   {item.country}
@@ -39,22 +56,34 @@ const Home = () => {
           </div>
           <div className="inputItem">
             <label>Select City</label>
-            <select name="city">
-              <option>Select here...</option>
-              {cities.map((item,id) => (
-                <option value={item} key={id}>{item}</option>
+            <select
+              name="city"
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
+            >
+              <option value="">Select here...</option>
+              {cities?.map((item, id) => (
+                <option value={item} key={id}>
+                  {item}
+                </option>
               ))}
             </select>
           </div>
           <div className="inputItem">
             <label>Write your name</label>
-            <input name="userName" type="text" />
+            <input
+              name="userName"
+              type="text"
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </div>
         </div>
         <div className="btns">
-          <button>Complete</button>
+          <button onClick={submitData}>Complete</button>
         </div>
       </form>
+      <Modal />
     </section>
   );
 };
