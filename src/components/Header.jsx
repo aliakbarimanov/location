@@ -4,7 +4,14 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo">LOGO</div>
-      <Link to="/">Home</Link>
+      <ul className="menuList">
+        <li className="menuItem">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="menuItem">
+          <Link to="/search">Search</Link>
+        </li>
+      </ul>
     </div>
   );
 };

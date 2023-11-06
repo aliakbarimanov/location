@@ -1,12 +1,21 @@
+const Modal = ({ data, modalRef}) => {
 
-
-const Modal = () => {
-
-  return <div className={"modal active"}>
-    <p className="country">Country:<span>AZE</span></p>
-    <p className="city">City:<span>Baku</span></p>
-    <p className="user">UserName:<span>Ali</span></p>
-  </div>;
+  return (
+    <div className="modal" ref={modalRef}>
+      <p>
+        <span className="key">Country:</span>
+        <span className="value">{data.country}</span>
+      </p>
+      <p>
+        <span className="key">City:</span>
+        <span className="value">{data.city}</span>
+      </p>
+      <p>
+        <span className="key">User:</span>
+        <span className="value">{data.user}</span>
+      </p>
+    </div>
+  );
 };
 
 export default Modal;

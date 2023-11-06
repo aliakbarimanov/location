@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Modal from "../components/Modal";
 
 const Home = () => {
@@ -12,6 +12,13 @@ const Home = () => {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [userName, setUserName] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  const userData = {
+    country: country,
+    city: city,
+    user: userName,
+  };
 
   const getData = async (e) => {
     await axios
@@ -31,16 +38,37 @@ const Home = () => {
 
   const submitData = (e) => {
     e.preventDefault();
+
+    if (country === "" || country.trim() === "") {
+      setOpenModal(false);
+    } else if (city === "" || city.trim() === "") {
+      setOpenModal(false);
+    } else if (userName === "" || userName.trim() === "") {
+      setOpenModal(false);
+    } else {
+      setOpenModal(true);
+    }
+  };
+
+  const sectionRef = useRef();
+  const btnRef = useRef();
+  const modalRef = useRef();
+
+  const secClick = (e) => {
+    if (e.target !== modalRef.current && e.target !== btnRef.current) {
+      setOpenModal(false);
+    }
   };
 
   return (
-    <section className="home">
+    <section className="home" ref={sectionRef} onClick={secClick}>
       <h2 className="sectionTitle">Hello World!</h2>
       <form>
         <div className="inputs">
           <div className="inputItem">
             <label>Select Country</label>
             <select
+              className="countrySelect"
               name="country"
               onChange={(e) => {
                 setCountry(e.target.value);
@@ -57,6 +85,7 @@ const Home = () => {
           <div className="inputItem">
             <label>Select City</label>
             <select
+              className={country ? "citySelect" : "citySelect disabled"}
               name="city"
               onChange={(e) => {
                 setCity(e.target.value);
@@ -73,6 +102,7 @@ const Home = () => {
           <div className="inputItem">
             <label>Write your name</label>
             <input
+              className={city ? "userInput" : "userInput disabled"}
               name="userName"
               type="text"
               onChange={(e) => setUserName(e.target.value)}
@@ -80,10 +110,16 @@ const Home = () => {
           </div>
         </div>
         <div className="btns">
-          <button onClick={submitData}>Complete</button>
+          <button
+            className={userName ? "submitBtn" : "submitBtn disabled"}
+            ref={btnRef}
+            onClick={submitData}
+          >
+            Complete
+          </button>
         </div>
       </form>
-      <Modal />
+      {openModal && <Modal data={userData} modalRef={modalRef} />}
     </section>
   );
 };

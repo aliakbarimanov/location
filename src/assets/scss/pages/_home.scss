@@ -45,21 +45,42 @@
 
         select {
           width: 200px;
-          height: 30px;
+          padding: 10px 5px;
+          font-size: 18px;
+          outline: none;
+          border: none;
+          border-radius: 8px;
         }
 
         input {
           width: 200px;
-          height: 30px;
           border: none;
           outline: none;
           font-size: 18px;
-          padding: 2px 5px;
+          padding: 10px;
+          outline: none;
+          border: none;
+          border-radius: 8px;
         }
 
-        .errMsg {
-          color: #f00;
-          font-size: 18px;
+        .citySelect {
+          &.disabled {
+            opacity: 0.8;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.5;
+            background-color: #f00;
+          }
+        }
+
+        .userInput {
+          &.disabled {
+            opacity: 0.8;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.5;
+            background-color: #f00;
+          }
         }
       }
     }
@@ -85,6 +106,13 @@
         &:hover {
           background-color: #ff0;
           color: #00f;
+        }
+
+        &.disabled{
+          opacity: 0.5;
+          background-color: #f00;
+          color: #fff;
+          cursor: default;
         }
       }
     }
