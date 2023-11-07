@@ -5,8 +5,9 @@
   align-items: center;
   padding: 10px 30px;
   backdrop-filter: blur(5px);
+  background-color: #00000050;
   position: absolute;
-  z-index: 1;
+  z-index: 9;
 
   .logo {
     width: 50%;

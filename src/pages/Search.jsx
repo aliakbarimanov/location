@@ -12,7 +12,7 @@ const Search = () => {
 
   const getAllData = async () => {
     await axios
-      .get("https://restcountries.com/v3.1/all")
+      .get(process.env.REACT_APP_ALL_COUNTRIES_ALL_DATA)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   };
@@ -38,8 +38,8 @@ const Search = () => {
         onChange={searchFunction}
       />
       <ul className="searchList">
-        {data.map((item, id) => (
-          <CountryCard data={item} key={id} id={id} />
+        {data?.map((item) => (
+          <CountryCard data={item} key={item?.cca3} />
         ))}
       </ul>
     </section>

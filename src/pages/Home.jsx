@@ -22,7 +22,7 @@ const Home = () => {
 
   const getData = async (e) => {
     await axios
-      .get("https://countriesnow.space/api/v0.1/countries")
+      .get(process.env.REACT_APP_ALL_COUNTRIES_FOR_SELECT)
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   };

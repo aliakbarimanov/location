@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/country/:singleId" element={<Country />} />
+        <Route path="/country/:name" element={<Country />} />
       </Routes>
     </BrowserRouter>
   );
