@@ -28,13 +28,12 @@ const Home = () => {
   };
 
   useEffect(() => {
+    const selectCountry = () => {
+      const cities = data.filter((item) => item.country === country);
+      setCities(cities[0]?.cities);
+    };
     selectCountry();
-  }, [country]);
-
-  const selectCountry = () => {
-    const cities = data.filter((item) => item.country === country);
-    setCities(cities[0]?.cities);
-  };
+  }, [country, data]);
 
   const submitData = (e) => {
     e.preventDefault();
@@ -50,76 +49,75 @@ const Home = () => {
     }
   };
 
-  const sectionRef = useRef();
-  const btnRef = useRef();
-  const modalRef = useRef();
+  const modalOutside = useRef();
 
-  const secClick = (e) => {
-    if (e.target !== modalRef.current && e.target !== btnRef.current) {
+  const closeModal = (e) => {
+    if (e.target === modalOutside.current) {
       setOpenModal(false);
     }
-  };
+  }
 
   return (
-    <section className="home" ref={sectionRef} onClick={secClick}>
-      <h2 className="sectionTitle">Hello World!</h2>
-      <form>
-        <div className="inputs">
-          <div className="inputItem">
-            <label>Select Country</label>
-            <select
-              className="countrySelect"
-              name="country"
-              onChange={(e) => {
-                setCountry(e.target.value);
-              }}
+    <section className="home">
+      <div className="overlay" ref={modalOutside} onClick={closeModal}>
+        <h2 className="sectionTitle">Hello World!</h2>
+        <form>
+          <div className="inputs">
+            <div className="inputItem">
+              <label>Select Country</label>
+              <select
+                className="countrySelect"
+                name="country"
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                }}
+              >
+                <option value="">Select here...</option>
+                {data.map((item, id) => (
+                  <option value={item.country} key={id}>
+                    {item.country}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="inputItem">
+              <label>Select City</label>
+              <select
+                className={country ? "citySelect" : "citySelect disabled"}
+                name="city"
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+              >
+                <option value="">Select here...</option>
+                {cities?.map((item, id) => (
+                  <option value={item} key={id}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="inputItem">
+              <label>Write your name</label>
+              <input
+                className={city ? "userInput" : "userInput disabled"}
+                name="userName"
+                type="text"
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="btns">
+            <button
+              className={userName ? "submitBtn" : "submitBtn disabled"}
+              onClick={submitData}
             >
-              <option value="">Select here...</option>
-              {data.map((item, id) => (
-                <option value={item.country} key={id}>
-                  {item.country}
-                </option>
-              ))}
-            </select>
+              Complete
+            </button>
           </div>
-          <div className="inputItem">
-            <label>Select City</label>
-            <select
-              className={country ? "citySelect" : "citySelect disabled"}
-              name="city"
-              onChange={(e) => {
-                setCity(e.target.value);
-              }}
-            >
-              <option value="">Select here...</option>
-              {cities?.map((item, id) => (
-                <option value={item} key={id}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="inputItem">
-            <label>Write your name</label>
-            <input
-              className={city ? "userInput" : "userInput disabled"}
-              name="userName"
-              type="text"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="btns">
-          <button
-            className={userName ? "submitBtn" : "submitBtn disabled"}
-            ref={btnRef}
-            onClick={submitData}
-          >
-            Complete
-          </button>
-        </div>
-      </form>
-      {openModal && <Modal data={userData} modalRef={modalRef} />}
+        </form>
+      </div>
+      {openModal && <Modal data={userData} />}
     </section>
   );
 };

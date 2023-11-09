@@ -7,17 +7,17 @@ const Country = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    const getAllData = async () => {
+      await axios
+        .get(`${process.env.REACT_APP_SINGLE_COUNTRY}/${name}`)
+        .then((res) => setData(res.data[0]))
+        .catch((err) => console.log(err));
+    };
     getAllData();
   }, [name]);
 
-  const getAllData = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_SINGLE_COUNTRY}/${name}`)
-      .then((res) => setData(res.data[0]))
-      .catch((err) => console.log(err));
-  };
-
-  console.log(data);
+  // const key = Object?.keys(data?.currencies);s
+  // console.log(Object?.keys(data?.currencies));
 
   return (
     <section className="countryPage">
@@ -33,11 +33,15 @@ const Country = () => {
         </li>
         <li className="info">
           <span className="key">Borders:</span>
-          <span className="value">{data?.borders.map(item=>item +" ")}</span>
+          <span className="value">{data?.borders?.map(item => item + " ")}</span>
         </li>
         <li className="info">
           <span className="key">Capital:</span>
-          <span className="value">{data?.capital.map(item=>item+" ")}</span>
+          <span className="value">{data?.capital?.map(item => item + " ")}</span>
+        </li>
+        <li className="info">
+          <span className="key">Coat of Arms:</span>
+          <span className="value"><img src={data?.coatOfArms?.png} alt={data?.name?.common} /></span>
         </li>
       </ul>
     </section>

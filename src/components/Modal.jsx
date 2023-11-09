@@ -1,7 +1,7 @@
-const Modal = ({ data, modalRef}) => {
+const Modal = ({ data }) => {
 
   return (
-    <div className="modal" ref={modalRef}>
+    <div className="modal">
       <p>
         <span className="key">Country:</span>
         <span className="value">{data.country}</span>

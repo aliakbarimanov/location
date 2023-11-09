@@ -5,114 +5,122 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  .sectionTitle {
+  .overlay {
     width: 100%;
-    font-size: 80px;
-    padding: 20px 0;
-    text-align: center;
-    backdrop-filter: blur(5px);
-  }
-
-  form {
-    width: 100%;
-    backdrop-filter: blur(10px);
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
 
-    .inputs {
+    .sectionTitle {
       width: 100%;
+      font-size: 80px;
+      padding: 20px 0;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    form {
+      width: 100%;
+      backdrop-filter: blur(10px);
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 30px 0;
+      padding: 20px 0;
 
-      .inputItem {
+      .inputs {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        justify-content: space-around;
+        align-items: center;
+        padding: 30px 0;
 
-        label {
-          font-size: 20px;
-        }
+        .inputItem {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
 
-        select {
-          width: 200px;
-          padding: 10px 5px;
-          font-size: 18px;
-          outline: none;
-          border: none;
-          border-radius: 8px;
-        }
-
-        input {
-          width: 200px;
-          border: none;
-          outline: none;
-          font-size: 18px;
-          padding: 10px;
-          outline: none;
-          border: none;
-          border-radius: 8px;
-        }
-
-        .citySelect {
-          &.disabled {
-            opacity: 0.8;
-            pointer-events: none;
-            user-select: none;
-            opacity: 0.5;
-            background-color: #f00;
+          label {
+            font-size: 20px;
           }
-        }
 
-        .userInput {
-          &.disabled {
-            opacity: 0.8;
-            pointer-events: none;
-            user-select: none;
-            opacity: 0.5;
-            background-color: #f00;
+          select {
+            width: 200px;
+            padding: 10px 5px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            border-radius: 8px;
+          }
+
+          input {
+            width: 200px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            padding: 10px;
+            outline: none;
+            border: none;
+            border-radius: 8px;
+          }
+
+          .citySelect {
+            &.disabled {
+              opacity: 0.8;
+              pointer-events: none;
+              user-select: none;
+              opacity: 0.5;
+              background-color: #f00;
+            }
+          }
+
+          .userInput {
+            &.disabled {
+              opacity: 0.8;
+              pointer-events: none;
+              user-select: none;
+              opacity: 0.5;
+              background-color: #f00;
+            }
           }
         }
       }
-    }
 
-    .btns {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      .btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      button {
-        width: 200px;
-        font-size: 20px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        border-radius: 8px;
-        background-color: #00f;
-        color: #fff;
-        padding: 10px 0;
-        transition: all 0.7s ease;
-
-        &:hover {
-          background-color: #ff0;
-          color: #00f;
-        }
-
-        &.disabled{
-          opacity: 0.5;
-          background-color: #f00;
+        button {
+          width: 200px;
+          font-size: 20px;
+          outline: none;
+          border: none;
+          cursor: pointer;
+          border-radius: 8px;
+          background-color: #00f;
           color: #fff;
-          cursor: default;
+          padding: 10px 0;
+          transition: all 0.7s ease;
+
+          &:hover {
+            background-color: #ff0;
+            color: #00f;
+          }
+
+          &.disabled {
+            opacity: 0.5;
+            background-color: #f00;
+            color: #fff;
+            cursor: default;
+          }
         }
       }
     }

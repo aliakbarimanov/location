@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 const CountryCard = ({ data }) => {
 
-  console.log(data);
   return (
     <Link className="searchItem" to={`/country/${data?.name?.common}`}>
       <div className="itemImg">
